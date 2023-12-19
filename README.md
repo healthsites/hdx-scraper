@@ -13,6 +13,10 @@ for more information.
 git clone https://github.com/healthsites/hdx-scraper.git
 ```
 
+## Dependencies
+
+The script requires `ogr2ogr` binary which is a part of the [GDAL](https://gdal.org/) package
+
 ## Installation
 
 Open a terminal and run the installation script. This will install a virtualenv and install all the requirements.
@@ -31,11 +35,11 @@ Get into HDX website and save your API in your home directory.
 The full process for getting the key is well documented in the [HDX API repository](https://github.com/OCHA-DAP/hdx-python-api) : Usage -> Getting started -> Obtaining your API Key.
 
 ### Healthsites.io API Key
-Obtain you API key from Healthsites.io and add it to the `.env` file
+Obtain you API key from [Healthsites.io](https://healthsites.io) and add it to the `.env` file
 
 
 ### Running the script
-Open a terminal and execute the following command
+Open a terminal and execute the following command (it takes ages, so wrap it into `screen` or similar)
 
 ```shell
 python main.py
