@@ -7,6 +7,7 @@ from hdx.api.configuration import Configuration
 
 from healthsites import get_countries, generate_dataset
 from utils import handler
+from hdx.data.hdxobject import HDXError
 
 load_dotenv()
 
@@ -28,8 +29,12 @@ def run():
         dataset.add_tag('health facilities')
         dataset.set_subnational(True)
         logging.info('Uploading files to HDX for %s' % country)
-        dataset.create_in_hdx()
-        logging.info('Uploading files to HDX for %s done' % country)
+        try:
+            dataset.create_in_hdx()
+            logging.info('Uploading files to HDX for %s done' % country)
+        except HDXError:
+            logging.error('Failed to upload resources for country %s' % country)
+            pass
 
 
 if __name__ == "__main__":
