@@ -1,4 +1,5 @@
 import logging
+import os
 import signal
 
 from dotenv import load_dotenv
@@ -17,7 +18,7 @@ signal.signal(signal.SIGINT, handler)  # handle Ctrl+C
 def run():
     countries = get_countries()
 
-    conf = Configuration.create(hdx_site="stage", user_agent="Healthsites.io")
+    conf = Configuration.create(hdx_site=os.environ['HDX_ENVIRONMENT'], user_agent="Healthsites.io")
 
     for country in countries:
         dataset = generate_dataset(country)
