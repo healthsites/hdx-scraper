@@ -235,6 +235,7 @@ def generate_dataset(country):
         dataset.add_update_resource(resource)
 
     timestamps.sort()
-    dataset.set_time_period(timestamps[0], timestamps[-1])
+    if len(timestamps):
+        dataset.set_time_period(timestamps[0], timestamps[-1])
 
     return dataset
