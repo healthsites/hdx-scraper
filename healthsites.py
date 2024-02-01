@@ -14,10 +14,21 @@ from hdx.data.resource import Resource
 timestamps = []
 
 
+def remove_attributes(record):
+    print(record)
+    if 'changeset_user' in record['properties']:
+        del record['properties']['changeset_user']
+    if 'contact_number' in record['properties']:
+        del record['properties']['contact_number']
+
+    return record
+
+
 def check_country_status_code(country):
     url = 'https://healthsites.io/api/v3/facilities/statistic/?api-key=%s&country=%s' % (
         os.environ['HS_API_KEY'], country)
     # logging.debug(url)
+    print(url)
     return requests.get(url).status_code
 
 
@@ -74,7 +85,8 @@ def fetch_country_data_from_healthsites(country):
         for record in data['features']:
             if record['properties']['changeset_timestamp']:
                 timestamps.append(datetime.fromisoformat(record['properties']['changeset_timestamp']))
-            combined['features'].append(record)
+            # record = map(remove_attributes, record)
+            combined['features'].append(remove_attributes(record))
 
     shutil.rmtree('/tmp/hdx')  # clear folder from previous run
     os.mkdir('/tmp/hdx')
@@ -133,7 +145,8 @@ def fetch_hxl_data_from_healthsites(country):
             has_result = False
 
         for record in data['features']:
-            combined['features'].append(record)
+            # record = map(remove_attributes, record)
+            combined['features'].append(remove_attributes(record))
 
     logging.info('Found total of %d records with HXL tags for %s' % (len(combined['features']), country))
 
