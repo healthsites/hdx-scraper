@@ -15,7 +15,6 @@ timestamps = []
 
 
 def remove_attributes(record):
-    print(record)
     if 'changeset_user' in record['properties']:
         del record['properties']['changeset_user']
     if 'contact_number' in record['properties']:
@@ -27,8 +26,6 @@ def remove_attributes(record):
 def check_country_status_code(country):
     url = 'https://healthsites.io/api/v3/facilities/statistic/?api-key=%s&country=%s' % (
         os.environ['HS_API_KEY'], country)
-    # logging.debug(url)
-    print(url)
     return requests.get(url).status_code
 
 
