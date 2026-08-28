@@ -32,7 +32,8 @@ def run():
         try:
             dataset.create_in_hdx()
             logging.info('Uploading files to HDX for %s done' % country)
-        except HDXError:
+        except HDXError as e:
+            logging.error("Exception message: %s", str(e))
             logging.error('Failed to upload resources for country %s' % country)
             pass
 

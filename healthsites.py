@@ -217,6 +217,10 @@ def create_resources(country):
 def remove_current_resources(country):
     dataset = Dataset.read_from_hdx(slugify('%s healthsites' % country).lower())
 
+    if dataset is None:
+        logging.info('No existing dataset on HDX for %s, nothing to remove' % country)
+        return
+
     while True:
         resources = dataset.get_resources()
 
