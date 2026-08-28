@@ -207,6 +207,7 @@ def create_resources(country):
             resource['url'] = 'https://healthsites.io/'
             resource['description'] = config['description']
             resource.set_file_to_upload(file)
+            resource.set_types()  # sets url_type/resource_type, required since hdx-python-api 6.x
 
             resource.check_required_fields(['group', 'package_id'])
             output.append(resource)
