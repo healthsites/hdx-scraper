@@ -28,7 +28,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Adjust HDX environment in the `.env` file
+Adjust HDX environment in the `.env` file. Optionally create a `.env.local` file (git-ignored) with values that override `.env`, e.g. real API keys on the server.
 
 ### HDX API key
 Get into HDX website and save your API in your home directory.

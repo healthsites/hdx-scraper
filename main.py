@@ -9,7 +9,8 @@ from healthsites import get_countries, generate_dataset
 from utils import handler
 from hdx.data.hdxobject import HDXError
 
-load_dotenv()
+load_dotenv()  # .env
+load_dotenv('.env.local', override=True)  # .env.local wins over .env
 
 logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s', datefmt='%d/%m/%Y %I:%M:%S %p', level=logging.INFO)
 
