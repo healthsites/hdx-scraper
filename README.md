@@ -45,5 +45,14 @@ Open a terminal and execute the following command (it takes ages, so wrap it int
 python main.py
 ```
 
+### Deleting a country from HDX
+To remove a single country's dataset (and all its resources) from HDX:
+
+```shell
+python delete_country.py "Country Name"
+```
+
+The country name must match the one used in `countries.csv`. Remove the country's row from `countries.csv` as well, otherwise the next run of `main.py` will recreate the dataset.
+
 # Data
 The generated datasets are available in hdx from this link : https://data.humdata.org/organization/healthsites
